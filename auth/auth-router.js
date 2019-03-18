@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken');
 
 const Users = require('../auth/auth-model.js');
 
+router.get('/', (req, res) => {
+    res.send('Testing');
+});
+
 router.post('/register', (req, res) => {
     let user = req.body;
 

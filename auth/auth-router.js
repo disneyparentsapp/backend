@@ -43,4 +43,20 @@ router.post('/login', (req, res) => {
         });
 });
 
+function generateToken(user) {
+    const payload = {
+        subject: user.id,
+        username: user.username,
+        password: user.password
+    };
+
+    const secrets = process.env.JWT_SECRET || 'This is a secret.'
+
+    const options = {
+        expiresIn: '1d'
+    };
+
+    return jwt.sign(payload, secrets, options);
+}
+
 module.exports = router;

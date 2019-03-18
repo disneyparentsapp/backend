@@ -16,7 +16,30 @@ router.post('/register', (req, res) => {
             res.status(201).json(saved);
         })
         .catch(err => {
-            res.status(500).json({ errorMessage: 'Error registering the user.' });
+            console.log(err);
+            res.status(500).json({ error: 'Error registering the user.' });
+        });
+});
+
+router.post('/login', (req, res) => {
+    let { username, password } = req.body;
+
+    Users.findBy({ username })
+        .first()
+        .then(user => {
+            if(user && bcrypt.compareSync(password, user.password)) {
+                const token = generateToken(user);
+                res.status(200).json({ 
+                    message: `Welcome to Disney Parents, ${user.username}`,
+                    token
+                });
+            } else {
+                res.status(401).json({ errorMessage: 'Please provide the proper credentials.' });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ error: 'Error logging in.' });
         });
 });
 

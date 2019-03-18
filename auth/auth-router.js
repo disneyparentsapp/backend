@@ -34,7 +34,7 @@ router.post('/login', (req, res) => {
             if(user && bcrypt.compareSync(password, user.password)) {
                 const token = generateToken(user);
                 res.status(200).json({ 
-                    message: `Welcome to Disney Parents, ${user.username}`,
+                    message: `Welcome to Disney Parents, ${user.username}!`,
                     token
                 });
             } else {

@@ -7,6 +7,9 @@
     "server": "nodemon index.js",
     "start": "node index.js"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": "https://github.com/disneyparentsapp/backend.git",
   "author": "McNultyPT <mcnultypt@gmail.com>",
   "license": "MIT",

@@ -8,7 +8,9 @@ describe('posts-router.js', () => {
 
         describe('GET /posts', () => {
             it('should return 200 OK', async () => {
-               const res = await request(server).get('/');
+               const res = await request(server).get("/posts");
+
+               console.log(res.body);
                expect(res.status).toBe(200);
             });
 
@@ -16,6 +18,12 @@ describe('posts-router.js', () => {
                 const res = await request(server).get('/posts');
 
                 expect(res.type).toBe('application/json');
+            });
+
+            it('should return an array', async () => {
+                const res = await request(server).get('/posts');
+
+                expect(Array.isArray(res.body)).toBe(true);
             });
         });
 });

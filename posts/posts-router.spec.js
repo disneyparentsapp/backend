@@ -26,4 +26,49 @@ describe('posts-router.js', () => {
                 expect(Array.isArray(res.body)).toBe(true);
             });
         });
+
+        describe('POST /posts', () => {
+
+            afterEach(async () => {
+                await db('posts').truncate();
+            });
+
+            it('should return 201 OK', async () => {
+                const res = await request(server)
+                    .post('/posts')
+                    .send({
+                        name: 'test',
+                        location: 'test',
+                        kids: 1
+                    });
+
+                expect(res.status).toBe(201);
+            });
+
+            it('should add post to the db', async () => {
+                let res = await request(server)
+                    .post('/posts')
+                    .send({
+                        name: 'test',
+                        location: 'test',
+                        kids: 1
+                    });
+
+                res = await request(server).get('/posts');
+
+                expect(res.body).toHaveLength(1)
+            });
+
+            it('should return JSON', async () => {
+                const res = await request(server)
+                    .post('/posts')
+                    .send({
+                        name: 'test',
+                        location: 'test',
+                        kids: 1
+                    });
+
+                expect(res.type).toBe('application/json');
+            });
+        });
 });

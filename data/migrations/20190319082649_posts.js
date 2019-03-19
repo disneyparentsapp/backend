@@ -16,7 +16,7 @@ exports.up = function(knex, Promise) {
             .notNullable();
 
         posts
-            .timestamp('created_at')
+            .timestamp('timestamp')
             .defaultTo(knex.fn.now())
     });
 };

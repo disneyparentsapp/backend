@@ -9,8 +9,8 @@ router.get('/', restricted, (req, res) => {
             res.status(200).json(posts);
         })
         .catch(() => {
-            res.status(500).json({ error: 'The posts could not be retrieved.' });
-        })
+            res.status(500).json({ error: 'Error while retrieving posts.' });
+        });
 });
 
 router.get('/:id', restricted, (req, res) => {
@@ -30,7 +30,7 @@ router.get('/:id', restricted, (req, res) => {
         });
 });
 
-router.post('/', restricted, (req, res) => {
+router.post('/', (req, res) => {
     const postInfo = req.body;
 
     if (!postInfo.name || !postInfo.location || !postInfo.kids)
@@ -52,7 +52,7 @@ router.post('/', restricted, (req, res) => {
         });
 });
 
-router.delete('/:id', restricted, (req, res) => {
+router.delete('/:id', (req, res) => {
     const id = req.params.id;
 
     db('posts')
@@ -70,7 +70,7 @@ router.delete('/:id', restricted, (req, res) => {
         });
 });
 
-router.put('/:id', restricted, (req, res) => {
+router.put('/:id', (req, res) => {
     const postInfo = req.body;
     const id = req.params.id;
 

@@ -52,4 +52,22 @@ router.post('/', (req, res) => {
         });
 });
 
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+
+    db('comments')
+        .where({ id })
+        .del()
+        .then(count => {
+            if(count > 0) {
+                res.status(204).json({ message: 'Comment deleted.' });
+            } else {
+                res.status(404).json({ errorMessage: 'A comment with that ID does not exist.' });
+            }
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'Error while deleting comment.' });
+        });
+});
+
 module.exports = router;

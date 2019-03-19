@@ -21,9 +21,9 @@ Post Data Model
 
 - field: id, type: integer, description: id for post.
 - field: name, type: string, description: name of user making post .
-- field: location, type:string, description: location of user making post.
+- field: location, type: string, description: location of user making post.
 - field: kids, type: integer, description: number of kids user has with them.
-- field: timestamp, type:string, description:time post was created.
+- field: timestamp, type: string, description:time post was created.
 
 Comments Endpoints
 

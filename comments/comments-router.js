@@ -70,4 +70,27 @@ router.delete('/:id', (req, res) => {
         });
 });
 
+router.put('/:id', (req, res) => {
+    const commentInfo = req.body;
+    const id = req.params.id;
+
+    db('comments')
+        .where({ id })
+        .update(commentInfo)
+        .then(count => {
+            if(count > 0) {
+                db('comments')
+                    .where({ id })
+                    .then(comment => {
+                        res.status(200).json(comment);
+                    })
+            } else {
+                res.status(404).json({ errorMessage: 'A comment with that ID does not exist.' });
+            }
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'Error while updating comment.' });
+        });
+});
+
 module.exports = router;

@@ -5,9 +5,9 @@ Auth Endpoints
 
 Auth Data Model
 
--field: id, type: integer, description: id for user.
--field: username, type: string, description: username for user.
--field: password, type: string, description: password for user.
+- field: id, type: integer, description: id for user.
+- field: username, type: string, description: username for user.
+- field: password, type: string, description: password for user.
 
 Posts Endpoints
 
@@ -19,11 +19,11 @@ Posts Endpoints
 
 Post Data Model
 
--field: id, type: integer, description: id for post.
--field: name, type: string, description: name of user making post .
--field: location, type:string, description: location of user making post.
--field: kids, type: integer, description: number of kids user has with them.
--field: timestamp, type:string, description:time post was created.
+- field: id, type: integer, description: id for post.
+- field: name, type: string, description: name of user making post .
+- field: location, type:string, description: location of user making post.
+- field: kids, type: integer, description: number of kids user has with them.
+- field: timestamp, type:string, description:time post was created.
 
 Comments Endpoints
 
@@ -35,7 +35,7 @@ Comments Endpoints
 
 Comments Data Model
 
--field: id, type: integer, description: id for comment.
--field: post_id, type: integer, description: references id on posts table.
--field: name, type: string, description: name of user creating comment.
--field: comment, type: string, description: comment created by user. Limit of 1000 characters.
+- field: id, type: integer, description: id for comment.
+- field: post_id, type: integer, description: references id on posts table.
+- field: name, type: string, description: name of user creating comment.
+- field: comment, type: string, description: comment created by user. Limit of 1000 characters.

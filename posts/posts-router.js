@@ -9,7 +9,7 @@ router.get('/', restricted, (req, res) => {
             res.status(200).json(posts);
         })
         .catch(() => {
-            res.status(500).json({ error: 'The posts could not be retrieved.' });
+            res.status(500).json({ error: 'Error while retrieving posts.' });
         })
 });
 

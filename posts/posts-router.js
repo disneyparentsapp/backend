@@ -1,8 +1,9 @@
 const router = require('express').Router();
 
 const db = require('../data/dbConfig.js');
+const restricted = require('../auth/restricted.js');
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     db('posts')
         .then(posts => {
             res.status(200).json(posts);
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', restricted, (req, res) => {
     const id = req.params.id;
 
     db('posts')
@@ -29,7 +30,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
     const postInfo = req.body;
 
     if (!postInfo.name || !postInfo.location || !postInfo.kids)
@@ -51,7 +52,7 @@ router.post('/', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
     const id = req.params.id;
 
     db('posts')
@@ -69,7 +70,7 @@ router.delete('/:id', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
     const postInfo = req.body;
     const id = req.params.id;
 

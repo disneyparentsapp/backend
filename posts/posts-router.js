@@ -69,4 +69,8 @@ router.delete('/posts/:id', (req, res) => {
         });
 });
 
+router.put('/posts/:id', (req, res) => {
+    
+})
+
 module.exports = router;

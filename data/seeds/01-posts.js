@@ -4,9 +4,9 @@ exports.seed = function(knex, Promise) {
     .truncate()
     .then(function () {
       return knex('posts').insert([
-        {location: 'Haunted Mansion', kids: 2},
-        {location: 'Space Mountain', kids: 3},
-        {location: 'The Matterhorn', kids: 1}
+        {name: 'Christina', location: 'Haunted Mansion', kids: 2},
+        {name: 'Ciaran', location: 'Space Mountain', kids: 3},
+        {name: 'Eva', location: 'The Matterhorn', kids: 1}
       ]);
     });
 };

@@ -4,6 +4,10 @@ exports.up = function(knex, Promise) {
         posts.increments();
 
         posts
+            .string('name', 255)
+            .notNullable();
+
+        posts
             .string('location', 255)
             .notNullable();
         

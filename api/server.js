@@ -12,6 +12,6 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/', authRouter);
-server.use('/', postsRouter);
+server.use('/posts', postsRouter);
 
 module.exports = server;

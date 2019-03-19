@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const db = require('../data/dbConfig.js');
 
-router.get('/posts', (req, res) => {
+router.get('/', (req, res) => {
     db('posts')
         .then(posts => {
             res.status(200).json(posts);
@@ -12,7 +12,7 @@ router.get('/posts', (req, res) => {
         })
 });
 
-router.get('/posts/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const id = req.params.id;
 
     db('posts')
@@ -29,11 +29,11 @@ router.get('/posts/:id', (req, res) => {
         });
 });
 
-router.post('/posts', (req, res) => {
+router.post('/', (req, res) => {
     const postInfo = req.body;
 
-    if (!postInfo.location || !postInfo.kids)
-        return res.status(400).json({ errorMessage: 'Please provide a location and number of kids for the post.' });
+    if (!postInfo.name || !postInfo.location || !postInfo.kids)
+        return res.status(400).json({ errorMessage: 'Please provide a name, location and number of kids for the post.' });
 
     db('posts')
         .insert(postInfo)
@@ -51,7 +51,7 @@ router.post('/posts', (req, res) => {
         });
 });
 
-router.delete('/posts/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const id = req.params.id;
 
     db('posts')
@@ -69,8 +69,27 @@ router.delete('/posts/:id', (req, res) => {
         });
 });
 
-router.put('/posts/:id', (req, res) => {
-    
-})
+router.put('/:id', (req, res) => {
+    const postInfo = req.body;
+    const id = req.params.id;
+
+    db('posts')
+        .where({ id })
+        .update(postInfo)
+        .then(count => {
+            if(count > 0) {
+                db('posts')
+                    .where({ id })
+                    .then(post => {
+                        res.status(200).json(post);
+                    })
+            } else {
+                res.status(404).json({ errorMessage: 'A post with that ID does not exist.' });
+            }
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'Error while updating the post.' });
+        });
+});
 
 module.exports = router;

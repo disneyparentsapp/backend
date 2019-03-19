@@ -10,7 +10,7 @@ router.get('/', restricted, (req, res) => {
         })
         .catch(() => {
             res.status(500).json({ error: 'Error while retrieving posts.' });
-        })
+        });
 });
 
 router.get('/:id', restricted, (req, res) => {

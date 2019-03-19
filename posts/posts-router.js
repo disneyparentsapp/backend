@@ -29,4 +29,26 @@ router.get('/posts/:id', (req, res) => {
         });
 });
 
+router.post('/posts', (req, res) => {
+    const postInfo = req.body;
+
+    if (!postInfo.location || !postInfo.kids)
+        return res.status(400).json({ errorMessage: 'Please provide a location and number of kids for the post.' });
+
+    db('posts')
+        .insert(postInfo)
+        .then(ids => {
+            const [id] = ids;
+
+            db('posts')
+                .where({ id })
+                .then(post => {
+                    res.status(201).json(post);
+                });
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'Error while adding the post.' });
+        });
+});
+
 module.exports = router;

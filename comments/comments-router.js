@@ -33,23 +33,24 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     const commentInfo = req.body;
 
-    if (!commentInfo.post_id || !commentInfo.name || !commentInfo.comment)
-        return res.status(400).json({ errorMessage: 'Please provide a post id, name and comment.' });
-
-    db('comments')
-        .insert(commentInfo)
-        .then(ids => {
-            const [id] = ids;
-
+    if (!commentInfo.post_id || !commentInfo.name || !commentInfo.comment) {
+        return res.status(404).json({ errorMessage: 'Please provide a post id, name and comment.' });
+        } else {
             db('comments')
-                .where({ id })
-                .then(comment => {
-                    res.status(201).json(comment);
-                });
+                .insert(commentInfo)
+                .then(ids => {
+                    const [id] = ids;
+
+                    db('comments')
+                        .where({ id })
+                        .then(comment => {
+                            res.status(201).json(comment);
+                    });
+            })
+            .catch(() => {
+                res.status(500).json({ error: 'Error while adding comment.' });
         })
-        .catch(() => {
-            res.status(500).json({ error: 'Error while adding comment.' });
-        });
+    }
 });
 
 router.delete('/:id', (req, res) => {

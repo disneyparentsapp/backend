@@ -68,11 +68,4 @@ describe('posts-router.js', () => {
                         kids: 1
                     });
 
-                expect(res.type).toBe('application/json');
-            });
-        });
 
-        describe('DELETE /posts', () => {
-
-        })
-});

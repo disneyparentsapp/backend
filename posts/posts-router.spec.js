@@ -71,4 +71,8 @@ describe('posts-router.js', () => {
                 expect(res.type).toBe('application/json');
             });
         });
+
+        describe('DELETE /posts', () => {
+
+        });
 });

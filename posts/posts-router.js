@@ -3,7 +3,7 @@ const router = require('express').Router();
 const db = require('../data/dbConfig.js');
 const restricted = require('../auth/restricted.js');
 
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
     db('posts')
         .then(posts => {
             res.status(200).json(posts);
@@ -90,6 +90,25 @@ router.put('/:id', (req, res) => {
         })
         .catch(() => {
             res.status(500).json({ error: 'Error while updating the post.' });
+        });
+});
+
+router.get('/:id/comments', (req, res) => {
+    const id = req.params.id;
+
+    db('posts')
+        .where({ id })
+        .first()
+        .then(post => {
+            db('comments')
+                .where({ post_id: id })
+                .then(comments => {
+                    post.comments = comments;
+                    res.status(200).json(post)
+                });
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'The comments for that post could not be retrieved.' });
         });
 });
 

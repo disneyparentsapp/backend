@@ -93,4 +93,23 @@ router.put('/:id', (req, res) => {
         });
 });
 
+router.get('/:id/comments', (req, res) => {
+    const id = req.params.id;
+
+    db('posts')
+        .where({ id })
+        .first()
+        .then(post => {
+            db('comments')
+                .where({ post_id: id })
+                .then(comments => {
+                    post.comments = comments;
+                    res.status(200).json(post)
+                });
+        })
+        .catch(() => {
+            res.status(500).json({ error: 'The comments for that post could not be retrieved.' });
+        });
+});
+
 module.exports = router;

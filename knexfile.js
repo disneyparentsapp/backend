@@ -17,13 +17,12 @@ module.exports = {
     },
   },
 
-  production: {
-    client: 'postgresql',
+  testing: {
+    client: 'sqlite3',
     connection: {
-      database: 'disneyParents',
-      user: "username",
-      password: "password"
+      filename: './data/disneyParentsTestDb.db3'
     },
+    useNullAsDefault: true,
     migrations: {
       directory: './data/migrations'
     },
@@ -31,5 +30,20 @@ module.exports = {
       directory: './data/seeds'
     },
   },
+
+  // production: {
+  //   client: 'postgresql',
+  //   connection: {
+  //     database: 'disneyParents',
+  //     user: "username",
+  //     password: "password"
+  //   },
+  //   migrations: {
+  //     directory: './data/migrations'
+  //   },
+  //   seeds: {
+  //     directory: './data/seeds'
+  //   },
+  // },
 
 };

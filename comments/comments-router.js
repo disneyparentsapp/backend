@@ -3,7 +3,7 @@ const router = require('express').Router();
 const db = require('../data/dbConfig.js');
 const restricted = require('../auth/restricted.js');
 
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
     db('comments')
         .then(comments => {
             res.status(200).json(comments)
@@ -13,7 +13,7 @@ router.get('/', restricted, (req, res) => {
         });
 });
 
-router.get('/:id', restricted, (req, res) => {
+router.get('/:id', (req, res) => {
     const id = req.params.id;
 
     db('comments')

@@ -74,5 +74,5 @@ describe('posts-router.js', () => {
 
         describe('DELETE /posts', () => {
 
-        });
+        })
 });

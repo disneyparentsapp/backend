@@ -71,4 +71,8 @@
 //                 expect(res.type).toBe('application/json');
 //             });
 //         });
+
+//         describe('DELETE /posts', () => {
+
+//         })
 // });

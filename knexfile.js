@@ -31,19 +31,19 @@ module.exports = {
     },
   },
 
-  production: {
-    client: 'postgresql',
-    connection: {
-      database: 'disneyParents',
-      user: "username",
-      password: "password"
-    },
-    migrations: {
-      directory: './data/migrations'
-    },
-    seeds: {
-      directory: './data/seeds'
-    },
-  },
+  // production: {
+  //   client: 'postgresql',
+  //   connection: {
+  //     database: 'disneyParents',
+  //     user: "username",
+  //     password: "password"
+  //   },
+  //   migrations: {
+  //     directory: './data/migrations'
+  //   },
+  //   seeds: {
+  //     directory: './data/seeds'
+  //   },
+  // },
 
 };

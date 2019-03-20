@@ -16,6 +16,7 @@ Posts Endpoints
 - method: POST, endpoint: /posts, description: adds a posts if has name, location and kids fields.
 - method: DELETE, endpoint: /posts/:id, description: deletes a post with specified id.
 - method: PUT, endpoint: /posts/:id, description: updates a post with specified id.
+- method: GET, endpoint: /posts/:id/comments, description: gets a post with the comments that match its id.
 
 Post Data Model
 
@@ -23,7 +24,7 @@ Post Data Model
 - field: name, type: string, description: name of user making post .
 - field: location, type: string, description: location of user making post.
 - field: kids, type: integer, description: number of kids user has with them.
-- field: timestamp, type: string, description:time post was created.
+- field: timestamp, type: string, description: time post was created.
 
 Comments Endpoints
 

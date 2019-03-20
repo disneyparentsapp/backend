@@ -72,7 +72,34 @@ describe('posts-router.js', () => {
             });
         });
 
-        describe('DELETE /posts', () => {
+        describe('DELETE /posts/:id', () => {
 
-        })
+            it('should return 204 OK', async () => {
+                let res = await request(server)
+                    .post('/posts')
+                    .send({
+                        name: 'test',
+                        location: 'test',
+                         kids: 1
+                    });
+
+            res = await request(server).delete(`/posts/${1}`);
+
+            expect(res.status).toBe(204);
+            });
+
+            it('should return JSON', async () => {
+                let res = await request(server)
+                    .post('/posts')
+                    .send({
+                        name: 'test',
+                        location: 'test',
+                        kids: 1
+                    });
+
+                res = await request(server).delete(`/posts/${1}`);
+
+                expect(res.type).toBe('application/json');
+            });
+        });
 });

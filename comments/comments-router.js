@@ -75,6 +75,12 @@ router.put('/:id', (req, res) => {
     const commentInfo = req.body;
     const id = req.params.id;
 
+    if(!commentInfo.comment)
+        return res.status(422).json({ error: '.'});
+
+    if(!id)
+        return res.status(404).json({ error: '.'});
+
     db('comments')
         .where({ id })
         .update(commentInfo)

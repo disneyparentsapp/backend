@@ -71,4 +71,35 @@ describe('comments-router.js', () => {
             expect(res.type).toBe('application/json');
         });
     });
+
+    describe('DELETE /comments/:id', () => {
+
+        it('should return 204 OK', async () => {
+            let res = await request(server)
+                .post('/comments')
+                .send({
+                    post_id: 1,
+                    name: 'test',
+                    comment: 'test'
+                });
+
+            res = await request(server).delete('/comments/1')
+
+            expect(res.status).toBe(204);
+        });
+
+        it('should return JSON', async () => {
+            let res = await request(server)
+                .post('/comments')
+                .send({
+                    post_id: 1,
+                    name: 'test',
+                    comment: 'test'
+                });
+
+            res = await request(server).delete('/comments/1');
+
+            expect(res.type).toBe('application/json');
+        });
+    });
 });

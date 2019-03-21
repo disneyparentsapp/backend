@@ -93,7 +93,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.get('/:id/comments', (req, res) => {
+router.get('/:id/comments', restricted, (req, res) => {
     const id = req.params.id;
 
     db('posts')
